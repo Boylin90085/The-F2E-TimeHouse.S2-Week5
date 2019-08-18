@@ -110,8 +110,8 @@ const gamePlay = {
                 this.invincible = false
               }, 500)
             } else {
-              this.invincible = false
-              player.setScale(1)
+              // this.invincible = false
+              // player.setScale(1)
             }
           } else {
             this.gameOver = true
@@ -170,8 +170,8 @@ const gamePlay = {
                 this.invincible = false
               }, 500)
             } else {
-              this.invincible = false
-              player.setScale(1)
+              // this.invincible = false
+              // player.setScale(1)
             }
           } else {
             this.gameOver = true
@@ -247,6 +247,10 @@ const gamePlay = {
           if (!hanten.ate) {
             player.setScale(1.5)
             this.invincible = true
+            setTimeout(() => {
+              this.invincible = false
+              player.setScale(1)
+            }, 3000)
           }
           hanten.ate = true
           setTimeout(() => {
@@ -285,7 +289,11 @@ const gamePlay = {
   },
   update: function(){
     if (this.timeStep > 0) {
-      this.bg.tilePositionX += this.baseSpeed * this.speedLv
+      if (this.timeStep <= 10) {
+        this.bg.tilePositionX += 8
+      } else {
+        this.bg.tilePositionX += this.baseSpeed * this.speedLv
+      }
     } else {
       if (!this.gameWin) {
         this.bg.setTexture('bg_rich')
@@ -301,12 +309,7 @@ const gamePlay = {
       }
     }
 
-    // 政治獻金出場
-    this.coinArr.forEach((money, i) => {
-      money.x -= this.baseSpeed
-    })
-
-    if (this.timeStep >= 5) {
+    if (this.timeStep > 5) {
       // 1450出場
       this['1450-1'].x -= this.netArmsSpeed
       if (this.timeStep < 85) {
@@ -341,7 +344,12 @@ const gamePlay = {
       if (this.timeStep < 30) {
         this.water.x -= this.baseSpeed
       }
-    } else {
+    } else if (this.timeStep >= 1) {
+      // 政治獻金出場
+      this.coinArr.forEach((money, i) => {
+        money.x -= this.baseSpeed
+      })
+
       // 讓敵人消失
       this['1450-0'].x = -500
       this['1450-1'].x = -500
@@ -350,12 +358,8 @@ const gamePlay = {
       this.guo.x = -500
       this.hanten.x = -500
       this.water.x = -500
-
-      // 停住錢幣
-      this.coinArr.forEach((money, i) => {
-        money.x -= 0
-      })
     }
+
     // 終點出場
     if (this.timeStep < 9 && this.timeStep > 0) {
       this.faDaTsai.x -= this.baseSpeed
