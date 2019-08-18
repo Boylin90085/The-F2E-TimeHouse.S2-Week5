@@ -34,7 +34,7 @@ const gamePlay = {
       this.baseSpeed = 4        // 基本速度
       this.netArmsSpeed = 6        // 基本速度
       this.tsaiSpeed = 12       // 老蔡速度
-      this.guoSpeed = 20       // 老郭速度
+      this.guoSpeed = 15       // 老郭速度
       this.mysterySpeed = 20       // 神秘小幫手速度
       this.speedLv = 1         // 速率
 
@@ -296,12 +296,12 @@ const gamePlay = {
       }
     }
 
-    if (this.timeStep >= 5) {
-      // 政治獻金出場
-      this.coinArr.forEach((money, i) => {
-        money.x -= this.baseSpeed
-      })
+    // 政治獻金出場
+    this.coinArr.forEach((money, i) => {
+      money.x -= this.baseSpeed
+    })
 
+    if (this.timeStep >= 5) {
       // 1450出場
       this['1450-1'].x -= this.netArmsSpeed
       if (this.timeStep < 85) {
