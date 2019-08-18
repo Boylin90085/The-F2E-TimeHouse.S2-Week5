@@ -77,7 +77,7 @@ const gamePlay = {
       keyFrame(this)
 
       //播放動畫
-      // this.player.anims.play('run', true)
+      this.player.anims.play('run', true)
 
       // 1450的座標資訊
       const netArmyPos = [
@@ -88,7 +88,7 @@ const gamePlay = {
 
       // 敵人碰撞
       const enemyHit = (player, enemy) => {
-        if (enemy.y - player.y <= 50 && enemy.y - player.y >= -50) {
+        if (enemy.y - player.y <= 10 && enemy.y - player.y >= -10) {
           enemy.x = -150
 
           if (this.lifeNum > 0) {
