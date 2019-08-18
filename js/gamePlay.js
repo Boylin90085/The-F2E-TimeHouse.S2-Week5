@@ -108,9 +108,7 @@ const gamePlay = {
                 this.invincible = false
               }, 500)
             } else {
-              setTimeout(() => {
-                this.invincible = false
-              }, 1000)
+              this.invincible = false
               player.setScale(1)
             }
           } else {
@@ -123,6 +121,7 @@ const gamePlay = {
       // 產生1450
       for (let i = 0; i <= 2; i++) {
         this[`1450-${i}`] = this.add.sprite(netArmyPos[i].x, netArmyPos[i].y, netArmyPos[i].name)
+        this[`1450-${i}`].depth = 4
         addPhysics(this[`1450-${i}`])
         this.physics.add.collider(this.player, this[`1450-${i}`], enemyHit)
       }
@@ -139,6 +138,8 @@ const gamePlay = {
 
       // 老郭的座標資訊
       this.guoPos = {name: 'guo', x: w + 200, y: 630}
+
+      // 老郭加入上下跑
       
       // 產生老郭
       this.guo = this.add.sprite(this.guoPos.x, this.guoPos.y + (getRandom(0, 3) * 120), this.guoPos.name)
