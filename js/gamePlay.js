@@ -31,6 +31,8 @@ const gamePlay = {
       this.lifeNum = 3         // 生命數量
       this.timeStep = 90       // 時間
 
+      this.isMove = false      // 移動中
+
       this.baseSpeed = 4        // 基本速度
       this.netArmsSpeed = 6        // 基本速度
       this.tsaiSpeed = 12       // 老蔡速度
@@ -46,7 +48,7 @@ const gamePlay = {
       this.gameOver = false
   },
   create: function(){
-      this.audio.play()
+      // this.audio.play()
       this.audio.loop = true
       // 加入物理效果
       const addPhysics = GameObject =>{
@@ -92,7 +94,7 @@ const gamePlay = {
       // 敵人碰撞
       const enemyHit = (player, enemy) => {
         // enemy.y - player.y <= 10 && enemy.y - player.y >= -10
-        if (enemy.y - player.y <= 5 && enemy.y - player.y >= -5) {
+        if (enemy.y === player.y) {
           enemy.x = -150
 
           if (this.lifeNum > 0) {
@@ -338,6 +340,7 @@ const gamePlay = {
         this.water.x -= this.baseSpeed
       }
     } else {
+      // 讓敵人消失
       this['1450-0'].x = -500
       this['1450-1'].x = -500
       this['1450-2'].x = -500
@@ -345,6 +348,11 @@ const gamePlay = {
       this.guo.x = -500
       this.hanten.x = -500
       this.water.x = -500
+
+      // 停住錢幣
+      this.coinArr.forEach((money, i) => {
+        money.x -= 0
+      })
     }
     // 終點出場
     if (this.timeStep < 9 && this.timeStep > 0) {
@@ -401,24 +409,27 @@ const gamePlay = {
     const keyboard = this.input.keyboard.createCursorKeys()
 
     if(keyboard.up.isDown){
+      if (!this.isMove) {
         if (this.player.y > 630) {
-            this.player.y -= 15
-            this.player.anims.play('speed', true)
+          this.isMove = true
+          this.player.y -= 120
         }
+      }
     } else if (keyboard.down.isDown) {
+      if (!this.isMove) {
         if (this.player.y < 870) {
-            this.player.y += 15
-            this.player.anims.play('speed', true)
+          this.isMove = true
+          this.player.y += 120
         }
+      }
     } else {
-        if (this.gameWin) {
-          this.player.anims.play('win', true)
-        } else if (this.timeStep <= 10 && this.timeStep > 0) {
-          this.player.anims.play('speed', true)
-        } else {
-          this.player.anims.play('run', true)
-        }
-        
+      this.isMove = false
+    }
+
+    if (this.gameWin) {
+      this.player.anims.play('win', true)
+    } else if (this.timeStep <= 10 && this.timeStep > 0) {
+      this.player.anims.play('speed', true)
     }
   }
 }
