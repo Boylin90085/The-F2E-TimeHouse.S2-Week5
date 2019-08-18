@@ -210,7 +210,8 @@ const gamePlay = {
 
       // 吃到政治獻金
       const eatCoin = (player, coin) => {
-        if (coin.y - player.y <= 150 && coin.y - player.y >= - 50) {
+        // coin.y - player.y <= 150 && coin.y - player.y >= - 50
+        if ((coin.y -100) === player.y) {
           coin.setTexture('coin_shining')
           if (!coin.ate) {
             this.coinNum ++
@@ -240,7 +241,8 @@ const gamePlay = {
 
       // 吃到中天菇
       const eatHanten = (player, hanten) => {
-        if (hanten.y - player.y <= 150 && hanten.y - player.y >= - 50) {
+        // hanten.y - player.y <= 150 && hanten.y - player.y >= - 50
+        if ((hanten.y -100) === player.y) {
           hanten.setTexture('hanten_mushroom_shining')
           if (!hanten.ate) {
             player.setScale(1.5)
