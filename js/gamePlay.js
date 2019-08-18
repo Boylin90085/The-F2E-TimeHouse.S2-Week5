@@ -309,6 +309,13 @@ const gamePlay = {
       }
     }
 
+    if (this.timeStep >= 1) {
+      // 政治獻金出場
+      this.coinArr.forEach((money, i) => {
+        money.x -= this.baseSpeed
+      })
+    }
+
     if (this.timeStep > 5) {
       // 1450出場
       this['1450-1'].x -= this.netArmsSpeed
@@ -344,12 +351,7 @@ const gamePlay = {
       if (this.timeStep < 30) {
         this.water.x -= this.baseSpeed
       }
-    } else if (this.timeStep >= 1) {
-      // 政治獻金出場
-      this.coinArr.forEach((money, i) => {
-        money.x -= this.baseSpeed
-      })
-
+    } else {
       // 讓敵人消失
       this['1450-0'].x = -500
       this['1450-1'].x = -500
