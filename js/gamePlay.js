@@ -88,7 +88,8 @@ const gamePlay = {
 
       // 敵人碰撞
       const enemyHit = (player, enemy) => {
-        if (enemy.y - player.y <= 10 && enemy.y - player.y >= -10) {
+        // enemy.y - player.y <= 10 && enemy.y - player.y >= -10
+        if (enemy.y === player.y) {
           enemy.x = -150
 
           if (this.lifeNum > 0) {
