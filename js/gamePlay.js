@@ -2,6 +2,8 @@ const getRandom = (max, min) =>{
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+let bgmPlayed = false   // BGＭ有沒有播放
+
 const gamePlay = {
   key: 'gamePlay',
   preload: function(){
@@ -48,8 +50,13 @@ const gamePlay = {
       this.gameOver = false
   },
   create: function(){
-      this.audio.play()
-      this.audio.loop = true
+      // BGM播放
+      if (!bgmPlayed) {
+        this.audio.play()
+        this.audio.loop = true
+        bgmPlayed = true
+      }
+
       // 加入物理效果
       const addPhysics = GameObject =>{
         this.physics.add.existing(GameObject);
