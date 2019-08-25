@@ -5,7 +5,7 @@ const getRandom = (max, min) =>{
 const gamePlay = {
   key: 'gamePlay',
   preload: function(){
-      this.audio = new Audio('./bgm/【音MAD】發Daaaaaaaaaaaa財.mp3')
+      // this.audio = new Audio('./bgm/【音MAD】發Daaaaaaaaaaaa財.mp3')
       this.load.image('bg_poor', 'images/bg/bg_poor.jpg')
       this.load.image('bg_rich', 'images/bg/bg_rich.jpg')
       this.load.image('1450', 'images/1450.svg')
@@ -48,8 +48,8 @@ const gamePlay = {
       this.gameOver = false
   },
   create: function(){
-      this.audio.play()
-      this.audio.loop = true
+      // this.audio.play()
+      // this.audio.loop = true
       // 加入物理效果
       const addPhysics = GameObject =>{
         this.physics.add.existing(GameObject);

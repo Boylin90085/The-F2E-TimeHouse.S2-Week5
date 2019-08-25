@@ -1,6 +1,8 @@
 const gameStart = {
   key: 'gameStart',
   preload: function(){
+    this.load.audio('bgm', ['./bgm/【音MAD】發Daaaaaaaaaaaa財.mp3'])
+
     this.load.image('bg_poor', 'images/bg/bg_poor.jpg')
     this.load.image('bg_rich', 'images/bg/bg_rich.jpg')
     this.load.image('logo', 'images/logo.png')
@@ -17,6 +19,9 @@ const gameStart = {
     this.gameStop = false
   },
   create: function(){
+    this.bgm = this.sound.add('bgm')
+    this.bgm.play()
+
     this.bg = this.add.tileSprite(840, 540, 1680, 1080, 'bg_poor')
 
     // 載入生命
