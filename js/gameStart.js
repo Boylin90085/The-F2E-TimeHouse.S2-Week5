@@ -1,3 +1,5 @@
+let bgmPlayed = false
+
 const gameStart = {
   key: 'gameStart',
   preload: function(){
@@ -19,8 +21,13 @@ const gameStart = {
     this.gameStop = false
   },
   create: function(){
-    this.bgm = this.sound.add('bgm')
-    this.bgm.play()
+
+    if (!bgmPlayed) {
+      this.bgm = this.sound.add('bgm')
+      this.bgm.play()
+      this.bgm.setLoop(true)
+      bgmPlayed = true
+    }
 
     this.bg = this.add.tileSprite(840, 540, 1680, 1080, 'bg_poor')
 

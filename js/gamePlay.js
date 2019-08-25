@@ -48,8 +48,6 @@ const gamePlay = {
       this.gameOver = false
   },
   create: function(){
-      // this.audio.play()
-      // this.audio.loop = true
       // 加入物理效果
       const addPhysics = GameObject =>{
         this.physics.add.existing(GameObject);
